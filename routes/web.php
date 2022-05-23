@@ -77,3 +77,25 @@ Route::prefix('categories')->as('categories.')->group(function () {
     })->name('show');
 });
 
+
+/* Price Types */
+Route::prefix('price-types')->as('priceTypes.')->group(function () {
+    Route::get('/index', function(){
+        $priceTypes = Http::get(config('app.backend_url').'/api/price-types/')->json();
+        return view('admin.price-types.index', ['priceTypes'=>$priceTypes['priceTypes']]);
+    })->name('index');
+
+    Route::get('/create', function(){
+        return view('admin.price-types.create');
+    })->name('create');
+
+    Route::get('/edit/{id}', function($id){
+        $priceType = Http::get(config('app.backend_url').'/api/price-types/'.$id)->json();
+        return view('admin.price-types.edit', ['priceType'=>$priceType['priceType']]);
+    })->name('edit');
+
+    Route::get('/show/{id}', function($id){
+        $priceType = Http::get(config('app.backend_url').'/api/price-types/'.$id)->json();
+        return view('admin.price-types.show', ['priceType'=>$priceType['priceType']]);
+    })->name('show');
+});
