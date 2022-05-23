@@ -57,8 +57,18 @@
                             </div>
                         </div>
 
-                        {{-- <div class="row prices p-3">
-                            <label for="category" class="col-md-2 col-form-label">Price</label>
+                     
+
+                        <div class="row p-3">
+                            <label for="image" class="col-md-2 col-form-label">Image</label>
+                            <div class="col-md-10">
+                                <input type="file" id="image" class="form-control" value="{{ old('image') }}"
+                                    name="image" accept="image/*">
+                            </div>
+                        </div>
+
+                        <div class="row prices p-3">
+                            <label for="price" class="col-md-2 col-form-label">Price</label>
                             <div class="row col-md-10">
                                 <div class="col-md-4 col-12 g-0" style="padding-right:5px!important">
                                     <select class="form-select" name="price_type_id[]" id="price_type_id">
@@ -80,15 +90,8 @@
                                 </div>
 
                             </div>
-                        </div> --}}
-
-                        <div class="row p-3">
-                            <label for="image" class="col-md-2 col-form-label">Image</label>
-                            <div class="col-md-10">
-                                <input type="file" id="image" class="form-control" value="{{ old('image') }}"
-                                    name="image" accept="image/*">
-                            </div>
                         </div>
+
 
                         <div class="row p-3">
                             <label for="description" class="col-md-2 col-form-label">Description</label>
@@ -97,6 +100,8 @@
                                     placeholder="Enter Product Details"></textarea>
                             </div>
                         </div>
+
+                   
 
                         <div class="card-footer float-end">
                             <button type="submit" class="btn btn-primary">Add Product</button>
@@ -108,7 +113,7 @@
     </div>
 
     <!-- For Add New Input Row -->
-    {{-- <div class="row pricesCopy p-3" style="display: none;">
+    <div class="row pricesCopy p-3" style="display: none;">
         <label for="category" class="col-md-2 col-form-label"></label>
         <div class="row col-md-10">
             <div class="col-md-4 col-12 g-0" style="padding-right:5px!important">
@@ -131,7 +136,7 @@
             </div>
 
         </div>
-    </div> --}}
+    </div>
 @endsection
 
 @push('scripts')

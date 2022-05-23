@@ -61,11 +61,10 @@
                                                 <small>No Image</small>
                                             @endif
                                         </td>
-                                        <td class="text-center"> 
-                                            <div> <strong>৳ {{ $product['prices']['wholesale_price'] }}</strong></div> 
-                                        </td>
-                                        <td class="text-center"> 
-                                            <div> <strong>৳ {{ $product['prices']['retail_price'] }}</strong></div> 
+                                        <td class="text-center">
+                                            @foreach ($product['prices'] as $price)
+                                            <div>{{ $price['price_types']['name'] }} : <strong>৳ {{ $price['amount'] }}</strong></div> 
+                                            @endforeach
                                         </td>
                                         <td class="text-center">
                                             <form action="{{ config('app.backend_url') }}/api/products/toggle-status/{{ $product['id'] }}" method="post">

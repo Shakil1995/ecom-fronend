@@ -28,23 +28,26 @@ Route::get('/home', function(){
 Route::prefix('products')->as('products.')->group(function () {
     Route::get('/index', function(){
         $products = Http::get(config('app.backend_url').'/api/products/')->json();
-        return view('admin.products.index', ['products'=>$products['product']]);
+        return view('admin.products.index', ['products'=>$products['products']]);
     })->name('index');
 
     Route::get('/create', function(){
         $categories = Http::get(config('app.backend_url').'/api/categories/')->json();
-        return view('admin.products.create', ['categories'=>$categories['category']]);
+        $priceTypes = Http::get(config('app.backend_url').'/api/price-types/')->json();
+        return view('admin.products.create', ['categories'=>$categories['categories'], 'priceTypes'=>$priceTypes['priceTypes']]);
     })->name('create');
 
     Route::get('/edit/{id}', function($id){
         $categories = Http::get(config('app.backend_url').'/api/categories/')->json();
-        $product = Http::get(config('app.backend_url').'/api/products/'.$id)->json();
+        $product = Http::get(config('app.backend_url').'/api/products/'.$id)->json();    
         $priceTypes = Http::get(config('app.backend_url').'/api/price-types/')->json();
         return view('admin.products.edit', ['categories'=>$categories['categories'], 'priceTypes'=>$priceTypes['priceTypes'], 'product'=>$product['product']]);
     })->name('edit');
 
     Route::get('/show/{id}', function($id){
         $product = Http::get(config('app.backend_url').'/api/products/'.$id)->json();
+
         return view('admin.products.show', ['product'=>$product['product']]);
     })->name('show');
 });
+
