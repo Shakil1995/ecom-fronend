@@ -51,3 +51,29 @@ Route::prefix('products')->as('products.')->group(function () {
     })->name('show');
 });
 
+
+
+
+
+/* Categories */
+Route::prefix('categories')->as('categories.')->group(function () {
+    Route::get('/index', function(){
+        $categories = Http::get(config('app.backend_url').'/api/categories/')->json();
+        return view('admin.categories.index', ['categories'=>$categories['categories']]);
+    })->name('index');
+
+    Route::get('/create', function(){
+        return view('admin.categories.create');
+    })->name('create');
+
+    Route::get('/edit/{id}', function($id){
+        $category = Http::get(config('app.backend_url').'/api/categories/'.$id)->json();
+        return view('admin.categories.edit', ['category'=>$category['category']]);
+    })->name('edit');
+
+    Route::get('/show/{id}', function($id){
+        $category = Http::get(config('app.backend_url').'/api/categories/'.$id)->json();
+        return view('admin.categories.show', ['category'=>$category['category']]);
+    })->name('show');
+});
+
